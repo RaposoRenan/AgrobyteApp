@@ -2,16 +2,15 @@ package com.agrobyte.app.network;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import java.io.IOException;
-
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import java.io.IOException;
+
 public class AuthInterceptor implements Interceptor {
 
-    private Context context;
+    private final Context context;
 
     public AuthInterceptor(Context context) {
         this.context = context;
@@ -24,7 +23,7 @@ public class AuthInterceptor implements Interceptor {
 
         Request request = chain.request();
 
-        if (token != null) {
+        if (token != null && !token.isEmpty()) {
             Request.Builder builder = request.newBuilder()
                     .header("Authorization", "Bearer " + token);
             request = builder.build();

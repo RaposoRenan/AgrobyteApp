@@ -3,7 +3,6 @@ package com.agrobyte.app;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnEntrar;
     private ApiService apiService;
 
-    // Substitua pelos valores reais do seu client_id e client_secret
+    // Constantes para o client_id e client_secret
     private static final String CLIENT_ID = "myclientid";
     private static final String CLIENT_SECRET = "myclientsecret";
     private static final String GRANT_TYPE = "password";
@@ -37,20 +36,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Inicializar as views
         etEmail = findViewById(R.id.etEmail);
         etSenha = findViewById(R.id.etSenha);
         btnEntrar = findViewById(R.id.btnEntrar);
 
-        apiService = ApiClient.getApiService(this);
+        // Usa a instância sem o AuthInterceptor
+        apiService = ApiClient.getApiServiceWithoutAuth();
 
-        // Configurar o evento de clique do botão
-        btnEntrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                efetuarLogin();
-            }
-        });
+        btnEntrar.setOnClickListener(view -> efetuarLogin());
     }
 
     private void efetuarLogin() {
@@ -62,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Gerar o header de autorização
         String authorization = AuthUtils.getBasicAuthHeader(CLIENT_ID, CLIENT_SECRET);
 
         Call<TokenResponse> call = apiService.login(
@@ -75,18 +67,12 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<TokenResponse>() {
             @Override
             public void onResponse(@NonNull Call<TokenResponse> call, @NonNull Response<TokenResponse> response) {
-                if (response.isSuccessful()) {
+                if (response.isSuccessful() && response.body() != null) {
                     TokenResponse tokenResponse = response.body();
-                    // Salvar o token
                     salvarToken(tokenResponse.getAccessToken());
-
                     Toast.makeText(LoginActivity.this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
-
-                    // Navegar para a próxima tela (por exemplo, MainActivity)
-                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(LoginActivity.this, MenuActivity.class));
                     finish();
-
                 } else {
                     Toast.makeText(LoginActivity.this, "Falha no login: " + response.message(), Toast.LENGTH_SHORT).show();
                 }
