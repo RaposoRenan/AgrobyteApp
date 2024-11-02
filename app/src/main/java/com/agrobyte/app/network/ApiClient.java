@@ -26,7 +26,7 @@ public class ApiClient {
 
             // Configurar o Retrofit
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://seu-endereco-da-api")
+                    .baseUrl("http://192.168.1.103:8080/") // Substitua pelo URL base da sua API
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
@@ -36,5 +36,4 @@ public class ApiClient {
 
         return apiService;
     }
-
 }

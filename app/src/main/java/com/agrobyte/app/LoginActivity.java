@@ -3,6 +3,7 @@ package com.agrobyte.app;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agrobyte.app.network.ApiClient;
 import com.agrobyte.app.network.ApiService;
 import com.agrobyte.app.network.TokenResponse;
+import com.agrobyte.app.utils.AuthUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,11 +27,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnEntrar;
     private ApiService apiService;
 
-    // Substitua pelos valores do seu client_id e client_secret
+    // Substitua pelos valores reais do seu client_id e client_secret
     private static final String CLIENT_ID = "myclientid";
     private static final String CLIENT_SECRET = "myclientsecret";
     private static final String GRANT_TYPE = "password";
-    private static final String SCOPE = "read write";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +62,14 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // Gerar o header de autorização
+        String authorization = AuthUtils.getBasicAuthHeader(CLIENT_ID, CLIENT_SECRET);
+
         Call<TokenResponse> call = apiService.login(
+                authorization,
                 GRANT_TYPE,
                 email,
-                senha,
-                SCOPE,
-                CLIENT_ID,
-                CLIENT_SECRET
+                senha
         );
 
         call.enqueue(new Callback<TokenResponse>() {
@@ -81,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
 
                     // Navegar para a próxima tela (por exemplo, MainActivity)
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(intent);
                     finish();
 
@@ -103,5 +105,4 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("access_token", token);
         editor.apply();
     }
-
 }
