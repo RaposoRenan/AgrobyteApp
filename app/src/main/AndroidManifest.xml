@@ -18,6 +18,15 @@
         <activity
             android:name=".ColheitaDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".AddInsumosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditInsumoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InsumoDetailActivity"
+            android:exported="false" />
 
         <activity
             android:name=".ProdutosActivity"
