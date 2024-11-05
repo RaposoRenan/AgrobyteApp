@@ -28,7 +28,6 @@ public class EditInsumoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_insumo);
 
-        // Inicializar componentes
         etNome = findViewById(R.id.etNome);
         etValorUnitario = findViewById(R.id.etValorUnitario);
         etQuantidadeEstoque = findViewById(R.id.etQuantidadeEstoque);
@@ -37,17 +36,14 @@ public class EditInsumoActivity extends AppCompatActivity {
 
         apiService = ApiClient.getApiServiceWithAuth(this);
 
-        // Obter o ID do insumo passado pela Activity anterior
         insumoId = getIntent().getIntExtra("insumo_id", -1);
 
-        // Carregar os detalhes do insumo para exibir nos campos
         if (insumoId != -1) {
             fetchInsumoDetails();
         } else {
             finish();
         }
 
-        // Configurar ação do botão Salvar
         btnSalvar.setOnClickListener(v -> saveInsumoChanges());
     }
 
@@ -59,15 +55,12 @@ public class EditInsumoActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     Insumo insumo = response.body();
                     populateFields(insumo);
-                } else {
-                    Toast.makeText(EditInsumoActivity.this, "Erro ao carregar insumo", Toast.LENGTH_SHORT).show();
-                    finish();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Insumo> call, @NonNull Throwable t) {
-                Toast.makeText(EditInsumoActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditInsumoActivity.this, "Erro ao carregar insumo", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -85,7 +78,6 @@ public class EditInsumoActivity extends AppCompatActivity {
         double valorUnitario;
         int quantidadeEstoque;
 
-        // Validar e obter valores dos campos
         try {
             valorUnitario = Double.parseDouble(etValorUnitario.getText().toString().trim());
             quantidadeEstoque = Integer.parseInt(etQuantidadeEstoque.getText().toString().trim());
@@ -96,7 +88,6 @@ public class EditInsumoActivity extends AppCompatActivity {
 
         String dataValidade = etDataValidade.getText().toString().trim();
 
-        // Criar um novo objeto Insumo com as alterações
         Insumo updatedInsumo = new Insumo();
         updatedInsumo.setId(insumoId);
         updatedInsumo.setNome(nome);
@@ -104,14 +95,14 @@ public class EditInsumoActivity extends AppCompatActivity {
         updatedInsumo.setQuantidadeEstoque(quantidadeEstoque);
         updatedInsumo.setDataValidade(dataValidade);
 
-        // Fazer a requisição PUT para atualizar o insumo
         Call<Insumo> call = apiService.updateInsumo(insumoId, updatedInsumo);
         call.enqueue(new Callback<Insumo>() {
             @Override
             public void onResponse(@NonNull Call<Insumo> call, @NonNull Response<Insumo> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(EditInsumoActivity.this, "Insumo atualizado com sucesso", Toast.LENGTH_SHORT).show();
-                    finish(); // Voltar para a tela anterior
+                    setResult(RESULT_OK);
+                    finish();
                 } else {
                     Toast.makeText(EditInsumoActivity.this, "Erro ao atualizar insumo", Toast.LENGTH_SHORT).show();
                 }

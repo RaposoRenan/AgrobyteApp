@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +31,9 @@ public class InsumosActivity extends AppCompatActivity {
     private ApiService apiService;
     private List<Insumo> insumosList = new ArrayList<>();
 
+    private static final int REQUEST_CODE_ADD = 1;
+    private static final int REQUEST_CODE_EDIT = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +58,17 @@ public class InsumosActivity extends AppCompatActivity {
         btnVoltar.setOnClickListener(v -> finish());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchInsumos(); // Atualiza a lista sempre que retorna para esta tela
+    }
+
     private void fetchInsumos() {
         Call<InsumoResponse> call = apiService.getInsumos();
         call.enqueue(new Callback<InsumoResponse>() {
             @Override
-            public void onResponse(@NonNull Call<InsumoResponse> call, @NonNull Response<InsumoResponse> response) {
+            public void onResponse(Call<InsumoResponse> call, Response<InsumoResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     insumosList.clear();
                     insumosList.addAll(response.body().getContent());
@@ -68,7 +77,7 @@ public class InsumosActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<InsumoResponse> call, @NonNull Throwable t) {
+            public void onFailure(Call<InsumoResponse> call, Throwable t) {
                 // Tratar erro
             }
         });
@@ -94,13 +103,22 @@ public class InsumosActivity extends AppCompatActivity {
 
     private void openAddInsumoActivity() {
         Intent intent = new Intent(InsumosActivity.this, AddInsumosActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE_ADD);
     }
-
 
     private void onInsumoClick(Insumo insumo) {
         Intent intent = new Intent(InsumosActivity.this, InsumoDetailActivity.class);
         intent.putExtra("insumo_id", insumo.getId());
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE_EDIT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_CODE_ADD || requestCode == REQUEST_CODE_EDIT) {
+                fetchInsumos(); // Recarrega a lista após adicionar ou editar um insumo
+            }
+        }
     }
 }

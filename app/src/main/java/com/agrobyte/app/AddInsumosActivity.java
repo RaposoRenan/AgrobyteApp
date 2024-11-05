@@ -27,7 +27,6 @@ public class AddInsumosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_insumo);
 
-        // Inicializar componentes
         etNome = findViewById(R.id.etNome);
         etValorUnitario = findViewById(R.id.etValorUnitario);
         etQuantidadeEstoque = findViewById(R.id.etQuantidadeEstoque);
@@ -36,7 +35,6 @@ public class AddInsumosActivity extends AppCompatActivity {
 
         apiService = ApiClient.getApiServiceWithAuth(this);
 
-        // Configurar ação do botão Salvar
         btnSalvar.setOnClickListener(v -> saveNewInsumo());
     }
 
@@ -45,7 +43,6 @@ public class AddInsumosActivity extends AppCompatActivity {
         double valorUnitario;
         int quantidadeEstoque;
 
-        // Validar e obter valores dos campos
         try {
             valorUnitario = Double.parseDouble(etValorUnitario.getText().toString().trim());
             quantidadeEstoque = Integer.parseInt(etQuantidadeEstoque.getText().toString().trim());
@@ -56,23 +53,22 @@ public class AddInsumosActivity extends AppCompatActivity {
 
         String dataValidade = etDataValidade.getText().toString().trim();
 
-        // Criar um novo objeto Insumo com os dados
         Insumo newInsumo = new Insumo();
         newInsumo.setNome(nome);
         newInsumo.setValorUnitario(valorUnitario);
         newInsumo.setQuantidadeEstoque(quantidadeEstoque);
         newInsumo.setDataValidade(dataValidade);
 
-        // Fazer a requisição POST para adicionar o novo insumo
         Call<Insumo> call = apiService.createInsumo(newInsumo);
         call.enqueue(new Callback<Insumo>() {
             @Override
             public void onResponse(@NonNull Call<Insumo> call, @NonNull Response<Insumo> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(AddInsumosActivity.this, "Insumo adicionado com sucesso", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
                     finish(); // Volta para a tela anterior
                 } else {
-                    Toast.makeText(AddInsumosActivity.this, "Erro ao adicionar insumo: " + response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddInsumosActivity.this, "Erro ao adicionar insumo", Toast.LENGTH_SHORT).show();
                 }
             }
 
