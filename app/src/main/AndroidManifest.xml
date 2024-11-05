@@ -19,6 +19,18 @@
             android:name=".ColheitaDetailActivity"
             android:exported="false" />
         <activity
+            android:name=".ProdutosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddProdutoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProdutoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProdutoDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddInsumosActivity"
             android:exported="false" />
         <activity
@@ -26,10 +38,6 @@
             android:exported="false" />
         <activity
             android:name=".InsumoDetailActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".ProdutosActivity"
             android:exported="false" />
         <activity
             android:name=".InsumosActivity"

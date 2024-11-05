@@ -19,6 +19,7 @@ import com.agrobyte.app.model.Insumo;
 import com.agrobyte.app.model.InsumoResponse;
 import com.agrobyte.app.model.Producao;
 import com.agrobyte.app.model.Produto;
+import com.agrobyte.app.model.ProdutoResponse;
 
 public interface ApiService {
 
@@ -42,10 +43,6 @@ public interface ApiService {
     @GET("/producao/{id}")
     Call<Producao> getProducaoById(@Path("id") int id);
 
-    // Para obter o produto por ID
-    @GET("/produto/{id}")
-    Call<Produto> getProdutoById(@Path("id") int id);
-
     @GET("/insumo")
     Call<InsumoResponse> getInsumos();
 
@@ -60,5 +57,21 @@ public interface ApiService {
 
     @DELETE("/insumo/{id}")
     Call<Void> deleteInsumo(@Path("id") int id);
+
+
+    @GET("/produto/{id}")
+    Call<Produto> getProdutoById(@Path("id") int id);
+
+    @GET("/produto")
+    Call<ProdutoResponse> getProdutos();
+
+    @POST("/produto")
+    Call<Produto> createProduto(@Body Produto produto);
+
+    @PUT("/produto/{id}")
+    Call<Produto> updateProduto(@Path("id") int id, @Body Produto produto);
+
+    @DELETE("/produto/{id}")
+    Call<Void> deleteProduto(@Path("id") int id);
 
 }
