@@ -16,6 +16,21 @@
         android:theme="@style/Theme.AgrobyteApp"
         tools:targetApi="31">
         <activity
+            android:name=".AddProducaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProducaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProducaoDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProducoesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RealizarColheitaActivity"
+            android:exported="false" />
+        <activity
             android:name=".ColheitaDetailActivity"
             android:exported="false" />
         <activity

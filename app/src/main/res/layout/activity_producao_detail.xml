@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Detalhes da Produção -->
+        <TextView
+            android:id="@+id/tvId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID: " />
+
+        <TextView
+            android:id="@+id/tvDataEntrada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data de Entrada: " />
+
+        <TextView
+            android:id="@+id/tvTempoPlantio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tempo de Plantio: " />
+
+        <TextView
+            android:id="@+id/tvQuantidadePrevista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantidade Prevista: " />
+
+        <TextView
+            android:id="@+id/tvProduto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produto: " />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status: " />
+
+        <!-- Título para Insumos -->
+        <TextView
+            android:id="@+id/tvInsumos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insumos:"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <!-- RecyclerView para Insumos -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvInsumosProducao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <!-- Botões de ação -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp">
+
+            <Button
+                android:id="@+id/btnRealizarColheita"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Realizar Colheita" />
+
+            <Button
+                android:id="@+id/btnEditar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Editar"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnExcluir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Excluir"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF0000"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voltar"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+</ScrollView>

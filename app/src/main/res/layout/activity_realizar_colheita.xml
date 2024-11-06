@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Campo para Perda por Doença -->
+    <EditText
+        android:id="@+id/etPerdaDoenca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Perda por Doença"
+        android:inputType="number"
+        android:layout_marginTop="8dp" />
+
+    <!-- Campo para Perda por Erro -->
+    <EditText
+        android:id="@+id/etPerdaErro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Perda por Erro"
+        android:inputType="number"
+        android:layout_marginTop="8dp" />
+
+    <!-- Botões de ação -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Salvar Colheita" />
+
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Voltar"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+</LinearLayout>

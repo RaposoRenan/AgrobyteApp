@@ -38,7 +38,7 @@ public class InsumoAdapter extends RecyclerView.Adapter<InsumoAdapter.InsumoView
         Insumo insumo = insumos.get(position);
         holder.tvId.setText("ID: " + insumo.getId());
         holder.tvNome.setText("Nome: " + insumo.getNome());
-        holder.tvQuantidade.setText("Quantidade: " + insumo.getQuantidadeEstoque());
+        holder.tvQuantidade.setText("Quantidade: " + insumo.getQuantidade());
         holder.itemView.setOnClickListener(v -> listener.onItemClick(insumo));
     }
 

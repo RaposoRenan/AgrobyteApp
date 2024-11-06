@@ -69,7 +69,7 @@ public class EditInsumoActivity extends AppCompatActivity {
     private void populateFields(Insumo insumo) {
         etNome.setText(insumo.getNome());
         etValorUnitario.setText(String.valueOf(insumo.getValorUnitario()));
-        etQuantidadeEstoque.setText(String.valueOf(insumo.getQuantidadeEstoque()));
+        etQuantidadeEstoque.setText(String.valueOf(insumo.getQuantidade()));
         etDataValidade.setText(insumo.getDataValidade());
     }
 
@@ -92,7 +92,7 @@ public class EditInsumoActivity extends AppCompatActivity {
         updatedInsumo.setId(insumoId);
         updatedInsumo.setNome(nome);
         updatedInsumo.setValorUnitario(valorUnitario);
-        updatedInsumo.setQuantidadeEstoque(quantidadeEstoque);
+        updatedInsumo.setQuantidade(quantidadeEstoque);
         updatedInsumo.setDataValidade(dataValidade);
 
         Call<Insumo> call = apiService.updateInsumo(insumoId, updatedInsumo);

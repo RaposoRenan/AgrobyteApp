@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.agrobyte.app.model.Insumo;
@@ -81,7 +82,7 @@ public class InsumoDetailActivity extends AppCompatActivity {
     private void displayInsumoDetails(Insumo insumo) {
         tvId.setText("ID: " + insumo.getId());
         tvNome.setText("Nome: " + insumo.getNome());
-        tvQuantidade.setText("Quantidade: " + insumo.getQuantidadeEstoque());
+        tvQuantidade.setText("Quantidade: " + insumo.getQuantidade());
         tvValorUnitario.setText("Valor Unitário: " + insumo.getValorUnitario());
         tvDataValidade.setText("Data de Validade: " + insumo.getDataValidade());
     }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Spinner para selecionar Produto -->
+        <Spinner
+            android:id="@+id/spinnerProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:layout_marginTop="8dp" />
+
+        <!-- Campo para Tempo de Plantio -->
+        <EditText
+            android:id="@+id/etTempoPlantio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tempo de Plantio (dias)"
+            android:inputType="number"
+            android:layout_marginTop="8dp" />
+
+        <!-- Campo para Quantidade Prevista -->
+        <EditText
+            android:id="@+id/etQuantidadePrevista"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantidade Prevista"
+            android:inputType="number"
+            android:layout_marginTop="8dp" />
+
+        <!-- Botão para adicionar Insumo -->
+        <Button
+            android:id="@+id/btnAdicionarInsumo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicionar Insumo"
+            android:layout_marginTop="16dp" />
+
+        <!-- RecyclerView para listar Insumos -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvInsumos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <!-- Botões de ação -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp">
+
+            <Button
+                android:id="@+id/btnSalvar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Salvar Produção" />
+
+            <Button
+                android:id="@+id/btnVoltar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Voltar"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
