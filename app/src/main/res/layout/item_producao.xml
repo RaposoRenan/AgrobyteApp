@@ -1,29 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/item_producao.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="12dp"
+    android:background="?attr/selectableItemBackground">
 
-    <!-- ID do Insumo -->
     <TextView
         android:id="@+id/tvId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID:" />
+        android:text="ID: "
+        android:textStyle="bold" />
 
-    <!-- Nome do Insumo -->
     <TextView
-        android:id="@+id/tvNomeInsumo"
+        android:id="@+id/tvNomeProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome:" />
+        android:text="Produto: " />
 
-    <!-- Quantidade do Insumo -->
     <TextView
-        android:id="@+id/tvQuantidade"
+        android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantidade:" />
-
+        android:text="Status: " />
 </LinearLayout>

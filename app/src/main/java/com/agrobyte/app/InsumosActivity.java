@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,20 +40,25 @@ public class InsumosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insumos);
 
+        // Inicialização das views
         etSearchId = findViewById(R.id.etSearchId);
         btnSearch = findViewById(R.id.btnSearch);
         btnAdicionar = findViewById(R.id.btnAdicionar);
         btnVoltar = findViewById(R.id.btnVoltar);
         rvInsumos = findViewById(R.id.rvInsumos);
 
+        // Configuração do ApiService
         apiService = ApiClient.getApiServiceWithAuth(this);
 
+        // Configuração do RecyclerView e Adapter
         adapter = new InsumoAdapter(insumosList, this::onInsumoClick);
         rvInsumos.setLayoutManager(new LinearLayoutManager(this));
         rvInsumos.setAdapter(adapter);
 
+        // Carregar a lista inicial de insumos
         fetchInsumos();
 
+        // Configuração dos listeners de botão
         btnSearch.setOnClickListener(v -> searchInsumoById());
         btnAdicionar.setOnClickListener(v -> openAddInsumoActivity());
         btnVoltar.setOnClickListener(v -> finish());
@@ -65,20 +71,23 @@ public class InsumosActivity extends AppCompatActivity {
     }
 
     private void fetchInsumos() {
-        Call<InsumoResponse> call = apiService.getInsumos();
+        // Chamando a API para buscar a lista de insumos
+        Call<InsumoResponse> call = apiService.getInsumos(); // Utilizando InsumoResponse
         call.enqueue(new Callback<InsumoResponse>() {
             @Override
             public void onResponse(Call<InsumoResponse> call, Response<InsumoResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     insumosList.clear();
-                    insumosList.addAll(response.body().getContent());
+                    insumosList.addAll(response.body().getContent()); // Pega a lista de insumos do InsumoResponse
                     adapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(InsumosActivity.this, "Erro ao carregar insumos", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<InsumoResponse> call, Throwable t) {
-                // Tratar erro
+                Toast.makeText(InsumosActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -90,15 +99,19 @@ public class InsumosActivity extends AppCompatActivity {
             return;
         }
 
-        int id = Integer.parseInt(idStr);
-        List<Insumo> filteredList = new ArrayList<>();
-        for (Insumo insumo : insumosList) {
-            if (insumo.getId() == id) {
-                filteredList.add(insumo);
-                break;
+        try {
+            int id = Integer.parseInt(idStr);
+            List<Insumo> filteredList = new ArrayList<>();
+            for (Insumo insumo : insumosList) {
+                if (insumo.getId() == id) {
+                    filteredList.add(insumo);
+                    break;
+                }
             }
+            adapter.updateList(filteredList);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "ID inválido", Toast.LENGTH_SHORT).show();
         }
-        adapter.updateList(filteredList);
     }
 
     private void openAddInsumoActivity() {

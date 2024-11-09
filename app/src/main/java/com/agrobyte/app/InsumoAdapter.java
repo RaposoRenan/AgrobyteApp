@@ -37,8 +37,10 @@ public class InsumoAdapter extends RecyclerView.Adapter<InsumoAdapter.InsumoView
     public void onBindViewHolder(@NonNull InsumoViewHolder holder, int position) {
         Insumo insumo = insumos.get(position);
         holder.tvId.setText("ID: " + insumo.getId());
-        holder.tvNome.setText("Nome: " + insumo.getNome());
+        holder.tvNomeInsumo.setText("Nome: " + insumo.getNome());
         holder.tvQuantidade.setText("Quantidade: " + insumo.getQuantidadeEstoque());
+
+        // Configurando o clique no item
         holder.itemView.setOnClickListener(v -> listener.onItemClick(insumo));
     }
 
@@ -53,12 +55,12 @@ public class InsumoAdapter extends RecyclerView.Adapter<InsumoAdapter.InsumoView
     }
 
     static class InsumoViewHolder extends RecyclerView.ViewHolder {
-        TextView tvId, tvNome, tvQuantidade;
+        TextView tvId, tvNomeInsumo, tvQuantidade;
 
         public InsumoViewHolder(@NonNull View itemView) {
             super(itemView);
             tvId = itemView.findViewById(R.id.tvId);
-            tvNome = itemView.findViewById(R.id.tvNome);
+            tvNomeInsumo = itemView.findViewById(R.id.tvNomeInsumo);
             tvQuantidade = itemView.findViewById(R.id.tvQuantidade);
         }
     }

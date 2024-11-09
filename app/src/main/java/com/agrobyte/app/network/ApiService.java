@@ -14,12 +14,16 @@ import retrofit2.http.Path;
 import android.util.Base64;
 
 import com.agrobyte.app.model.Colheita;
+import com.agrobyte.app.model.ColheitaRequest;
 import com.agrobyte.app.model.ColheitaResponse;
 import com.agrobyte.app.model.Insumo;
 import com.agrobyte.app.model.InsumoResponse;
 import com.agrobyte.app.model.Producao;
+import com.agrobyte.app.model.ProducaoResponse;
 import com.agrobyte.app.model.Produto;
 import com.agrobyte.app.model.ProdutoResponse;
+
+import java.util.List;
 
 public interface ApiService {
 
@@ -73,5 +77,37 @@ public interface ApiService {
 
     @DELETE("/produto/{id}")
     Call<Void> deleteProduto(@Path("id") int id);
+
+    // Requisição GET para listar produções
+    @GET("producao")
+    Call<ProducaoResponse> getProducoes();
+
+    // Requisição PUT para atualizar o status das produções
+    @PUT("producao/atualizar-status")
+    Call<List<Producao>> updateStatusProducoes();
+
+    // Requisição POST para criar uma nova produção
+    @POST("producao")
+    Call<Producao> createProducao(@Body Producao producao);
+
+    // Requisição PUT para atualizar uma produção existente
+    @PUT("producao/{id}")
+    Call<Producao> updateProducao(@Path("id") int id, @Body Producao producao);
+
+    // Requisição DELETE para excluir uma produção
+    @DELETE("producao/{id}")
+    Call<Void> deleteProducao(@Path("id") int id);
+
+    // Requisição POST para realizar colheita
+    @POST("colheita/realizar")
+    Call<Void> realizarColheita(@Body ColheitaRequest colheitaRequest);
+
+    // Requisição GET para listar produtos
+    @GET("produto")
+    Call<List<Produto>> getListaProdutos();
+
+    // Requisição GET para listar insumos
+    @GET("insumo")
+    Call<List<Insumo>> getListaInsumos();
 
 }
