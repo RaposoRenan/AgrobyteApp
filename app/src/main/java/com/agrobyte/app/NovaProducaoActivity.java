@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.agrobyte.app.model.Insumo;
 import com.agrobyte.app.model.InsumoQuantidade;
+import com.agrobyte.app.model.InsumoResponse;
 import com.agrobyte.app.model.Producao;
 import com.agrobyte.app.model.Produto;
+import com.agrobyte.app.model.ProdutoResponse;
 import com.agrobyte.app.network.ApiClient;
 import com.agrobyte.app.network.ApiService;
 
@@ -23,15 +25,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Activity para criar ou editar uma produção.
- */
 public class NovaProducaoActivity extends AppCompatActivity {
 
     private Spinner spnProdutos;
     private EditText etTempoPlantio, etQuantidadePrevista;
     private Button btnAdicionarInsumo, btnSalvarProducao;
-    private RecyclerView recyclerViewInsumos; // Substituição do ListView para RecyclerView
+    private RecyclerView recyclerViewInsumos;
     private List<InsumoQuantidade> insumosList = new ArrayList<>();
     private ArrayAdapter<String> produtoAdapter;
     private InsumoProducaoAdapter insumoAdapter;
@@ -49,7 +48,6 @@ public class NovaProducaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nova_producao);
 
-        // Inicializar views
         spnProdutos = findViewById(R.id.spnProdutos);
         etTempoPlantio = findViewById(R.id.etTempoPlantio);
         etQuantidadePrevista = findViewById(R.id.etQuantidadePrevista);
@@ -59,42 +57,39 @@ public class NovaProducaoActivity extends AppCompatActivity {
 
         apiService = ApiClient.getApiServiceWithAuth(this);
 
-        // Configurar RecyclerView para insumos
         insumoAdapter = new InsumoProducaoAdapter(this, insumosList);
         recyclerViewInsumos.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewInsumos.setAdapter(insumoAdapter);
 
-        // Verificar se é modo de edição
         if (getIntent().hasExtra("producao_id")) {
             isEditMode = true;
             producaoId = getIntent().getIntExtra("producao_id", -1);
             carregarDadosProducao();
         }
 
-        // Carregar produtos e insumos
         carregarProdutos();
         carregarInsumos();
 
-        // Configurar listeners
         btnAdicionarInsumo.setOnClickListener(v -> adicionarInsumo());
         btnSalvarProducao.setOnClickListener(v -> salvarProducao());
     }
 
     private void carregarProdutos() {
-        Call<List<Produto>> call = apiService.getListaProdutos();
-        call.enqueue(new Callback<List<Produto>>() {
+        Call<ProdutoResponse> call = apiService.getProdutos();
+        call.enqueue(new Callback<ProdutoResponse>() {
             @Override
-            public void onResponse(@NonNull Call<List<Produto>> call, @NonNull Response<List<Produto>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    listaProdutos = response.body();
+            public void onResponse(@NonNull Call<ProdutoResponse> call, @NonNull Response<ProdutoResponse> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().getContent() != null) {
+                    listaProdutos = response.body().getContent();
+                    nomesProdutos.clear();
                     for (Produto produto : listaProdutos) {
                         nomesProdutos.add(produto.getNome());
                     }
+
                     produtoAdapter = new ArrayAdapter<>(NovaProducaoActivity.this, android.R.layout.simple_spinner_item, nomesProdutos);
                     produtoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spnProdutos.setAdapter(produtoAdapter);
 
-                    // Se for modo de edição, selecionar o produto correto
                     if (isEditMode && producaoExistente != null && producaoExistente.getProduto() != null) {
                         int index = nomesProdutos.indexOf(producaoExistente.getProduto().getNome());
                         if (index >= 0) {
@@ -107,24 +102,24 @@ public class NovaProducaoActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Produto>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ProdutoResponse> call, @NonNull Throwable t) {
                 Toast.makeText(NovaProducaoActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void carregarInsumos() {
-        Call<List<Insumo>> call = apiService.getListaInsumos();
-        call.enqueue(new Callback<List<Insumo>>() {
+        Call<InsumoResponse> call = apiService.getInsumos();
+        call.enqueue(new Callback<InsumoResponse>() {
             @Override
-            public void onResponse(@NonNull Call<List<Insumo>> call, @NonNull Response<List<Insumo>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    listaInsumos = response.body();
+            public void onResponse(@NonNull Call<InsumoResponse> call, @NonNull Response<InsumoResponse> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().getContent() != null) {
+                    listaInsumos = response.body().getContent();
+                    nomesInsumos.clear();
                     for (Insumo insumo : listaInsumos) {
                         nomesInsumos.add(insumo.getNome());
                     }
 
-                    // Se for modo de edição, carregar insumos existentes
                     if (isEditMode && producaoExistente != null && producaoExistente.getInsumos() != null) {
                         insumosList.addAll(producaoExistente.getInsumos());
                         insumoAdapter.notifyDataSetChanged();
@@ -135,7 +130,7 @@ public class NovaProducaoActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Insumo>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<InsumoResponse> call, @NonNull Throwable t) {
                 Toast.makeText(NovaProducaoActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -191,7 +186,7 @@ public class NovaProducaoActivity extends AppCompatActivity {
                     break;
                 }
             }
-            insumoAdapter.notifyDataSetChanged();
+            this.insumoAdapter.notifyDataSetChanged();
         });
         builder.setNegativeButton("Cancelar", null);
         builder.show();
