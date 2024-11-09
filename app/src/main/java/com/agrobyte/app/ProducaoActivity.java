@@ -64,6 +64,13 @@ public class ProducaoActivity extends AppCompatActivity {
         btnAtualizarStatus.setOnClickListener(v -> updateStatusProducoes());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Atualiza a lista de produções toda vez que a Activity é retomada
+        fetchProducoes();
+    }
+
     private void fetchProducoes() {
         Call<ProducaoResponse> call = apiService.getProducoes();
         call.enqueue(new Callback<ProducaoResponse>() {
