@@ -3,34 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="16dp">
 
-    <!-- ID do Insumo -->
+    <!-- Seleção do Insumo -->
     <TextView
-        android:id="@+id/tvId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID:" />
+        android:text="Selecione o Insumo"
+        android:textSize="16sp" />
 
-    <!-- Nome do Insumo -->
-    <TextView
-        android:id="@+id/tvNomeInsumo"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spnInsumos"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nome:" />
+        android:layout_marginTop="8dp" />
 
     <!-- Quantidade do Insumo -->
     <TextView
-        android:id="@+id/tvQuantidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantidade:" />
+        android:layout_marginTop="16dp"
+        android:text="Quantidade"
+        android:textSize="16sp" />
 
-    <!-- Botão para Deletar o Insumo -->
-
-    <Button
-        android:id="@+id/btnDeleteInsumo"
+    <EditText
+        android:id="@+id/etQuantidadeInsumo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Remover" />
+        android:inputType="number"
+        android:hint="Digite a quantidade do insumo"
+        android:layout_marginTop="8dp" />
+
 </LinearLayout>

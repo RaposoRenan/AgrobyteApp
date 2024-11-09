@@ -15,27 +15,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgrobyteApp"
         tools:targetApi="31">
+        <!-- Produto -->
         <activity
-            android:name=".ColheitaDetailActivity"
+            android:name=".ProdutoDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ProdutosActivity"
             android:exported="false" />
         <activity
-            android:name=".AddProdutoActivity"
+            android:name=".ProdutoAdapter"
             android:exported="false" />
         <activity
             android:name=".EditProdutoActivity"
             android:exported="false" />
         <activity
-            android:name=".ProdutoDetailActivity"
+            android:name=".AddProdutoActivity"
             android:exported="false" />
-        <activity
-            android:name=".AddInsumosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EditInsumoActivity"
-            android:exported="false" />
+        <!-- Insumo -->
         <activity
             android:name=".InsumoDetailActivity"
             android:exported="false" />
@@ -43,10 +39,39 @@
             android:name=".InsumosActivity"
             android:exported="false" />
         <activity
+            android:name=".InsumoAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".AddInsumosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditInsumoActivity"
+            android:exported="false" />
+        <!-- Colheita -->
+        <activity
+            android:name=".ColheitasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ColheitaDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ColheitaAdapter"
+            android:exported="false" />
+        <!-- Producao -->
+        <activity
             android:name=".ProducaoActivity"
             android:exported="false" />
         <activity
-            android:name=".ColheitasActivity"
+            android:name=".ProducaoDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProducaoAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".NovaProducaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InsumoProducaoAdapter"
             android:exported="false" />
         <activity
             android:name=".MenuActivity"
