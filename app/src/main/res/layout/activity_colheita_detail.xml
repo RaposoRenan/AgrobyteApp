@@ -17,18 +17,6 @@
             android:text="ID: " />
 
         <TextView
-            android:id="@+id/tvNomeProducao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nome da Produção: " />
-
-        <TextView
-            android:id="@+id/tvNomeProduto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nome do Produto: " />
-
-        <TextView
             android:id="@+id/tvDataColheita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
