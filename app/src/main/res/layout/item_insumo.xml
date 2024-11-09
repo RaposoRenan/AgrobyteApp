@@ -26,11 +26,4 @@
         android:layout_height="wrap_content"
         android:text="Quantidade:" />
 
-    <!-- Botão para Deletar o Insumo -->
-
-    <Button
-        android:id="@+id/btnDeleteInsumo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Remover" />
 </LinearLayout>

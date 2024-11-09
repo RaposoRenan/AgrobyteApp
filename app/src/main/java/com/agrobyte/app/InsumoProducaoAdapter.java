@@ -37,11 +37,11 @@ public class InsumoProducaoAdapter extends RecyclerView.Adapter<InsumoProducaoAd
         holder.tvNomeInsumo.setText(insumo.getNome());
         holder.tvQuantidade.setText("Quantidade: " + insumo.getQuantidade());
 
-        holder.btnDeleteInsumo.setOnClickListener(v -> {
+/*        holder.btnDeleteInsumo.setOnClickListener(v -> {
             insumoList.remove(position);
             notifyDataSetChanged();
             Toast.makeText(context, "Insumo removido", Toast.LENGTH_SHORT).show();
-        });
+        });*/
     }
 
     @Override
@@ -51,13 +51,13 @@ public class InsumoProducaoAdapter extends RecyclerView.Adapter<InsumoProducaoAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvNomeInsumo, tvQuantidade;
-        private final ImageButton btnDeleteInsumo;
+        //private final ImageButton btnDeleteInsumo;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNomeInsumo = itemView.findViewById(R.id.tvNomeInsumo);
             tvQuantidade = itemView.findViewById(R.id.tvQuantidade);
-            btnDeleteInsumo = itemView.findViewById(R.id.btnDeleteInsumo);
+            //btnDeleteInsumo = itemView.findViewById(R.id.btnDeleteInsumo);
         }
     }
 }
