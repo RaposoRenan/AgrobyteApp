@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class ColheitasActivity extends AppCompatActivity {
 
-    private EditText etSearchId;
+    private EditText etSearchName;
     private Button btnSearch, btnVoltar;
     private RecyclerView rvColheitas;
     private ColheitaAdapter adapter;
@@ -32,7 +32,7 @@ public class ColheitasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_colheitas);
 
-        etSearchId = findViewById(R.id.etSearchId);
+        etSearchName = findViewById(R.id.etSearchName);
         btnSearch = findViewById(R.id.btnSearch);
         btnVoltar = findViewById(R.id.btnVoltar);
         rvColheitas = findViewById(R.id.rvColheitas);
@@ -45,7 +45,7 @@ public class ColheitasActivity extends AppCompatActivity {
 
         fetchColheitas();
 
-        btnSearch.setOnClickListener(v -> searchColheitaById());
+        btnSearch.setOnClickListener(v -> searchColheitaByName());
         btnVoltar.setOnClickListener(v -> finish());
     }
 
@@ -68,19 +68,17 @@ public class ColheitasActivity extends AppCompatActivity {
         });
     }
 
-    private void searchColheitaById() {
-        String idStr = etSearchId.getText().toString().trim();
-        if (idStr.isEmpty()) {
+    private void searchColheitaByName() {
+        String nameQuery = etSearchName.getText().toString().trim();
+        if (nameQuery.isEmpty()) {
             fetchColheitas();
             return;
         }
-        int id = Integer.parseInt(idStr);
 
         List<Colheita> filteredList = new ArrayList<>();
         for (Colheita colheita : colheitasList) {
-            if (colheita.getId() == id) {
+            if (colheita.getNomeProduto() != null && colheita.getNomeProduto().toLowerCase().contains(nameQuery.toLowerCase())) {
                 filteredList.add(colheita);
-                break;
             }
         }
         adapter.updateList(filteredList);

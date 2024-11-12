@@ -28,7 +28,7 @@ import retrofit2.Response;
  */
 public class ProducaoActivity extends AppCompatActivity {
 
-    private EditText etSearchId;
+    private EditText etSearchName;
     private Button btnSearch, btnIniciarProducao, btnAtualizarStatus;
     private RecyclerView rvProducoes;
     private ProducaoAdapter producaoAdapter;
@@ -41,7 +41,7 @@ public class ProducaoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_producao);
 
         // Inicializar as views
-        etSearchId = findViewById(R.id.etSearchId);
+        etSearchName = findViewById(R.id.etSearchName);
         btnSearch = findViewById(R.id.btnSearch);
         btnIniciarProducao = findViewById(R.id.btnIniciarProducao);
         btnAtualizarStatus = findViewById(R.id.btnAtualizarStatus);
@@ -59,7 +59,7 @@ public class ProducaoActivity extends AppCompatActivity {
         fetchProducoes();
 
         // Configurar listeners
-        btnSearch.setOnClickListener(v -> searchProducaoById());
+        btnSearch.setOnClickListener(v -> searchProducaoByName());
         btnIniciarProducao.setOnClickListener(v -> openNovaProducaoActivity());
         btnAtualizarStatus.setOnClickListener(v -> updateStatusProducoes());
     }
@@ -67,8 +67,7 @@ public class ProducaoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Atualiza a lista de produções toda vez que a Activity é retomada
-        fetchProducoes();
+        fetchProducoes(); // Atualiza a lista de produções toda vez que a Activity é retomada
     }
 
     private void fetchProducoes() {
@@ -92,32 +91,20 @@ public class ProducaoActivity extends AppCompatActivity {
         });
     }
 
-    private void searchProducaoById() {
-        String idStr = etSearchId.getText().toString().trim();
-        if (idStr.isEmpty()) {
+    private void searchProducaoByName() {
+        String nameQuery = etSearchName.getText().toString().trim();
+        if (nameQuery.isEmpty()) {
             fetchProducoes();
             return;
         }
-        int id = Integer.parseInt(idStr);
 
-        Call<Producao> call = apiService.getProducaoById(id);
-        call.enqueue(new Callback<Producao>() {
-            @Override
-            public void onResponse(@NonNull Call<Producao> call, @NonNull Response<Producao> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    producaoList.clear();
-                    producaoList.add(response.body());
-                    producaoAdapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(ProducaoActivity.this, "Produção não encontrada", Toast.LENGTH_SHORT).show();
-                }
+        List<Producao> filteredList = new ArrayList<>();
+        for (Producao producao : producaoList) {
+            if (producao.getProduto() != null && producao.getProduto().getNome().toLowerCase().contains(nameQuery.toLowerCase())) {
+                filteredList.add(producao);
             }
-
-            @Override
-            public void onFailure(@NonNull Call<Producao> call, @NonNull Throwable t) {
-                Toast.makeText(ProducaoActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        }
+        producaoAdapter.updateList(filteredList); // Atualiza a lista no adapter
     }
 
     private void updateStatusProducoes() {

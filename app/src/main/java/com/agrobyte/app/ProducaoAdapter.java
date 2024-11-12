@@ -1,6 +1,5 @@
 package com.agrobyte.app;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import java.util.List;
 
 public class ProducaoAdapter extends RecyclerView.Adapter<ProducaoAdapter.ViewHolder> {
 
-    private final List<Producao> producaoList;
+    private List<Producao> producaoList;
     private final OnProducaoClickListener onProducaoClickListener;
 
     public ProducaoAdapter(List<Producao> producaoList, OnProducaoClickListener onProducaoClickListener) {
@@ -42,6 +41,11 @@ public class ProducaoAdapter extends RecyclerView.Adapter<ProducaoAdapter.ViewHo
     @Override
     public int getItemCount() {
         return producaoList.size();
+    }
+
+    public void updateList(List<Producao> newList) {
+        producaoList = newList;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

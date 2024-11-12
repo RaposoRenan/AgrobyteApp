@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,7 +26,7 @@ import retrofit2.Response;
 
 public class InsumosActivity extends AppCompatActivity {
 
-    private EditText etSearchId;
+    private EditText etSearchName;
     private Button btnSearch, btnAdicionar, btnVoltar;
     private RecyclerView rvInsumos;
     private InsumoAdapter adapter;
@@ -41,7 +42,7 @@ public class InsumosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_insumos);
 
         // Inicialização das views
-        etSearchId = findViewById(R.id.etSearchId);
+        etSearchName = findViewById(R.id.etSearchName);
         btnSearch = findViewById(R.id.btnSearch);
         btnAdicionar = findViewById(R.id.btnAdicionar);
         btnVoltar = findViewById(R.id.btnVoltar);
@@ -59,7 +60,7 @@ public class InsumosActivity extends AppCompatActivity {
         fetchInsumos();
 
         // Configuração dos listeners de botão
-        btnSearch.setOnClickListener(v -> searchInsumoById());
+        btnSearch.setOnClickListener(v -> searchInsumoByName());
         btnAdicionar.setOnClickListener(v -> openAddInsumoActivity());
         btnVoltar.setOnClickListener(v -> finish());
     }
@@ -71,14 +72,13 @@ public class InsumosActivity extends AppCompatActivity {
     }
 
     private void fetchInsumos() {
-        // Chamando a API para buscar a lista de insumos
-        Call<InsumoResponse> call = apiService.getInsumos(); // Utilizando InsumoResponse
+        Call<InsumoResponse> call = apiService.getInsumos();
         call.enqueue(new Callback<InsumoResponse>() {
             @Override
             public void onResponse(Call<InsumoResponse> call, Response<InsumoResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     insumosList.clear();
-                    insumosList.addAll(response.body().getContent()); // Pega a lista de insumos do InsumoResponse
+                    insumosList.addAll(response.body().getContent());
                     adapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(InsumosActivity.this, "Erro ao carregar insumos", Toast.LENGTH_SHORT).show();
@@ -92,26 +92,20 @@ public class InsumosActivity extends AppCompatActivity {
         });
     }
 
-    private void searchInsumoById() {
-        String idStr = etSearchId.getText().toString().trim();
-        if (idStr.isEmpty()) {
+    private void searchInsumoByName() {
+        String nameQuery = etSearchName.getText().toString().trim();
+        if (nameQuery.isEmpty()) {
             fetchInsumos();
             return;
         }
 
-        try {
-            int id = Integer.parseInt(idStr);
-            List<Insumo> filteredList = new ArrayList<>();
-            for (Insumo insumo : insumosList) {
-                if (insumo.getId() == id) {
-                    filteredList.add(insumo);
-                    break;
-                }
+        List<Insumo> filteredList = new ArrayList<>();
+        for (Insumo insumo : insumosList) {
+            if (insumo.getNome().toLowerCase().contains(nameQuery.toLowerCase())) {
+                filteredList.add(insumo);
             }
-            adapter.updateList(filteredList);
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "ID inválido", Toast.LENGTH_SHORT).show();
         }
+        adapter.updateList(filteredList);
     }
 
     private void openAddInsumoActivity() {
@@ -130,7 +124,7 @@ public class InsumosActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CODE_ADD || requestCode == REQUEST_CODE_EDIT) {
-                fetchInsumos(); // Recarrega a lista após adicionar ou editar um insumo
+                fetchInsumos();
             }
         }
     }

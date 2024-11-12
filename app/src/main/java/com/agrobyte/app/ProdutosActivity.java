@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class ProdutosActivity extends AppCompatActivity {
 
-    private EditText etSearchId;
+    private EditText etSearchName;
     private Button btnSearch, btnAdicionar, btnVoltar;
     private RecyclerView rvProdutos;
     private ProdutoAdapter adapter;
@@ -39,7 +39,7 @@ public class ProdutosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produtos);
 
-        etSearchId = findViewById(R.id.etSearchId);
+        etSearchName = findViewById(R.id.etSearchName);
         btnSearch = findViewById(R.id.btnSearch);
         btnAdicionar = findViewById(R.id.btnAdicionar);
         btnVoltar = findViewById(R.id.btnVoltar);
@@ -53,7 +53,7 @@ public class ProdutosActivity extends AppCompatActivity {
 
         fetchProdutos();
 
-        btnSearch.setOnClickListener(v -> searchProdutoById());
+        btnSearch.setOnClickListener(v -> searchProdutoByName());
         btnAdicionar.setOnClickListener(v -> openAddProdutoActivity());
         btnVoltar.setOnClickListener(v -> finish());
     }
@@ -83,19 +83,17 @@ public class ProdutosActivity extends AppCompatActivity {
         });
     }
 
-    private void searchProdutoById() {
-        String idStr = etSearchId.getText().toString().trim();
-        if (idStr.isEmpty()) {
+    private void searchProdutoByName() {
+        String nameQuery = etSearchName.getText().toString().trim();
+        if (nameQuery.isEmpty()) {
             fetchProdutos();
             return;
         }
 
-        int id = Integer.parseInt(idStr);
         List<Produto> filteredList = new ArrayList<>();
         for (Produto produto : produtosList) {
-            if (produto.getId() == id) {
+            if (produto.getNome().toLowerCase().contains(nameQuery.toLowerCase())) {
                 filteredList.add(produto);
-                break;
             }
         }
         adapter.updateList(filteredList);

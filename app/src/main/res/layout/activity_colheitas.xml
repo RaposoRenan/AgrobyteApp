@@ -6,13 +6,13 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Campo de pesquisa por ID -->
+    <!-- Campo de pesquisa por Nome do Produto -->
     <EditText
-        android:id="@+id/etSearchId"
+        android:id="@+id/etSearchName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Pesquisar por ID"
-        android:inputType="number" />
+        android:hint="Pesquisar por Nome do Produto"
+        android:inputType="text" />
 
     <!-- Botão de pesquisa -->
     <Button

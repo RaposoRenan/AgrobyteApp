@@ -5,21 +5,23 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Campo de pesquisa para o ID da produção -->
+    <!-- Campo de pesquisa para o nome do produto na produção -->
     <EditText
-        android:id="@+id/etSearchId"
+        android:id="@+id/etSearchName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Pesquisar ID da Produção"
-        android:inputType="number"
+        android:hint="Pesquisar por Nome do Produto"
+        android:inputType="text"
         android:layout_marginBottom="8dp" />
 
     <!-- Botões para pesquisa, iniciar e atualizar status -->
     <Button
         android:id="@+id/btnSearch"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pesquisar" />
+        android:text="Pesquisar"
+        android:layout_gravity="end"
+        android:layout_marginBottom="8dp" />
 
     <Button
         android:id="@+id/btnIniciarProducao"
@@ -39,6 +41,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProducoes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginTop="16dp" />
 </LinearLayout>
