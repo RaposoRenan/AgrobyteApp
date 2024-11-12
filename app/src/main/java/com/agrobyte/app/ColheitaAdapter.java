@@ -4,12 +4,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.agrobyte.app.model.Colheita;
-
 import java.util.List;
 
 public class ColheitaAdapter extends RecyclerView.Adapter<ColheitaAdapter.ColheitaViewHolder> {
@@ -37,7 +34,8 @@ public class ColheitaAdapter extends RecyclerView.Adapter<ColheitaAdapter.Colhei
     public void onBindViewHolder(@NonNull ColheitaViewHolder holder, int position) {
         Colheita colheita = colheitas.get(position);
         holder.tvId.setText("ID: " + colheita.getId());
-        holder.tvData.setText("Data: " + colheita.getDataColheita());
+        holder.tvProdutoNome.setText("Produto: " + colheita.getNomeProduto());
+        holder.tvQntdColhida.setText("Quantidade Colhida: " + colheita.getQntdColhida());
         holder.itemView.setOnClickListener(v -> listener.onItemClick(colheita));
     }
 
@@ -52,12 +50,13 @@ public class ColheitaAdapter extends RecyclerView.Adapter<ColheitaAdapter.Colhei
     }
 
     static class ColheitaViewHolder extends RecyclerView.ViewHolder {
-        TextView tvId, tvData;
+        TextView tvId, tvProdutoNome, tvQntdColhida;
 
         public ColheitaViewHolder(@NonNull View itemView) {
             super(itemView);
             tvId = itemView.findViewById(R.id.tvId);
-            tvData = itemView.findViewById(R.id.tvData);
+            tvProdutoNome = itemView.findViewById(R.id.tvProdutoNome);
+            tvQntdColhida = itemView.findViewById(R.id.tvQntdColhida);
         }
     }
 }
