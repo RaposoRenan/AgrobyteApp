@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAF3E0">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,48 +16,61 @@
             android:layout_height="wrap_content"
             android:text="Nova Produção"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#4CAF50" />
 
         <!-- Seleção do Produto -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Produto:" />
+            android:text="Produto:"
+            android:textColor="#388E3C"
+            android:layout_marginTop="8dp" />
 
         <Spinner
             android:id="@+id/spnProdutos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="#8BC34A" />
 
         <!-- Tempo de Plantio e Quantidade Prevista -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tempo de Plantio (dias):" />
+            android:text="Tempo de Plantio (dias):"
+            android:layout_marginTop="8dp"
+            android:textColor="#388E3C" />
 
         <EditText
             android:id="@+id/etTempoPlantio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number"
+            android:backgroundTint="#8BC34A"
+            android:padding="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quantidade Prevista:" />
+            android:text="Quantidade Prevista:"
+            android:layout_marginTop="8dp"
+            android:textColor="#388E3C" />
 
         <EditText
             android:id="@+id/etQuantidadePrevista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number"
+            android:backgroundTint="#8BC34A"
+            android:padding="10dp" />
 
         <!-- Insumos -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Insumos:" />
+            android:text="Insumos:"
+            android:textColor="#388E3C" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewInsumos"
@@ -67,7 +81,10 @@
             android:id="@+id/btnAdicionarInsumo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Adicionar Insumo" />
+            android:text="Adicionar Insumo"
+            android:backgroundTint="#FFA726"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="8dp" />
 
         <!-- Botão Confirmar Produção -->
         <Button
@@ -75,7 +92,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Salvar Produção" />
+            android:text="Salvar Produção"
+            android:backgroundTint="#FFA726"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 </ScrollView>

@@ -1,8 +1,9 @@
-<!-- res/layout/activity_detalhes_producao.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAF3E0">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,44 +17,51 @@
             android:text="Detalhes da Produção"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginBottom="12dp"
+            android:textColor="#8BC34A" />
 
         <!-- Informações sobre o Produto, Status e Tempo de Plantio -->
         <TextView
             android:id="@+id/tvId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID: " />
+            android:text="ID:"
+            android:textColor="#8BC34A" />
 
         <TextView
             android:id="@+id/tvProdutoNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Produto:" />
+            android:text="Produto:"
+            android:textColor="#8BC34A" />
 
         <TextView
             android:id="@+id/tvStatusProducao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status:" />
+            android:text="Status:"
+            android:textColor="#8BC34A" />
 
         <TextView
             android:id="@+id/tvTempoPlantio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tempo de Plantio:" />
+            android:text="Tempo de Plantio:"
+            android:textColor="#8BC34A" />
 
         <TextView
             android:id="@+id/tvQuantidadePrevista"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quantidade Prevista: " />
+            android:text="Quantidade Prevista:"
+            android:textColor="#8BC34A" />
 
         <TextView
             android:id="@+id/tvDataEntrada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Data Entrada: " />
+            android:text="Data Entrada:"
+            android:textColor="#8BC34A" />
 
         <!-- Lista de Insumos Utilizados -->
         <TextView
@@ -61,7 +69,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Insumos:" />
+            android:text="Insumos:"
+            android:textColor="#8BC34A"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewInsumos"
@@ -74,21 +83,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Realizar Colheita" />
+            android:text="Realizar Colheita"
+            android:backgroundTint="#FFA726"
+            android:textColor="#FFFFFF"/>
 
         <Button
             android:id="@+id/btnEditarProducao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Editar Produção" />
+            android:text="Editar Produção"
+            android:backgroundTint="#FFA726"
+            android:textColor="#FFFFFF"/>
 
         <Button
             android:id="@+id/btnExcluirProducao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Excluir Produção" />
-
+            android:text="Excluir Produção"
+            android:backgroundTint="#FF6347"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 </ScrollView>

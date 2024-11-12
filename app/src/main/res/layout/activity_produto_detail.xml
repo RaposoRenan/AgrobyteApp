@@ -3,45 +3,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAF3E0">
 
-    <!-- Detalhes do produto -->
+    <!-- Detalhes do Produto -->
     <TextView
         android:id="@+id/tvId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID:" />
+        android:text="ID:"
+        android:textSize="16sp"
+        android:textColor="#4CAF50"
+        android:layout_marginBottom="4dp" />
 
     <TextView
         android:id="@+id/tvNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome:" />
+        android:text="Nome:"
+        android:textSize="16sp"
+        android:textColor="#4CAF50"
+        android:layout_marginBottom="4dp" />
 
     <TextView
         android:id="@+id/tvQuantidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantidade:" />
+        android:text="Quantidade:"
+        android:textSize="16sp"
+        android:textColor="#FF9800"
+        android:layout_marginBottom="4dp" />
 
     <TextView
         android:id="@+id/tvValorUnitario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Valor Unitário:" />
+        android:text="Valor Unitário:"
+        android:textSize="16sp"
+        android:textColor="#FF9800"
+        android:layout_marginBottom="4dp" />
 
     <TextView
         android:id="@+id/tvDataValidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Data de Validade:" />
+        android:text="Data de Validade:"
+        android:textSize="16sp"
+        android:textColor="#FF9800"
+        android:layout_marginBottom="12dp" />
 
-    <!-- Botões de ação -->
+    <!-- Botões de Ação -->
     <Button
         android:id="@+id/btnEditar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Editar"
+        android:backgroundTint="#FFA726"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="16dp" />
 
     <Button
@@ -50,7 +68,7 @@
         android:layout_height="wrap_content"
         android:text="Excluir"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#FF0000"
+        android:backgroundTint="#D32F2F"
         android:layout_marginTop="8dp" />
 
     <Button
@@ -58,5 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Voltar"
+        android:backgroundTint="#8BC34A"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="8dp" />
 </LinearLayout>

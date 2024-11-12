@@ -3,25 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:padding="12dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:backgroundTint="#FAF3E0">
 
+    <!-- ID do Insumo -->
     <TextView
         android:id="@+id/tvId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID:" />
+        android:text="ID:"
+        android:textStyle="bold"
+        android:textColor="#4CAF50"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp" />
 
+    <!-- Nome do Insumo -->
     <TextView
         android:id="@+id/tvNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome:" />
+        android:text="Nome:"
+        android:textColor="#8BC34A"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp" />
 
+    <!-- Quantidade do Insumo -->
     <TextView
         android:id="@+id/tvQuantidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantidade:" />
-
+        android:text="Quantidade:"
+        android:textColor="#FFA726"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp" />
 </LinearLayout>

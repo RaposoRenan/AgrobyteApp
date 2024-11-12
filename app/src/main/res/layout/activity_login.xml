@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#FAF3E0">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             android:text="Agrobyte"
             android:textSize="32sp"
             android:textStyle="bold"
+            android:textColor="#4CAF50"
             android:layout_marginTop="48dp" />
 
         <!-- Texto "Bem-vindo(a)!" -->
@@ -28,7 +30,8 @@
             android:layout_height="wrap_content"
             android:text="Bem-vindo(a)!"
             android:textSize="24sp"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:textColor="#388E3C" />
 
         <!-- Texto "Login" -->
         <TextView
@@ -37,7 +40,8 @@
             android:layout_height="wrap_content"
             android:text="Login"
             android:textSize="20sp"
-            android:layout_marginTop="32dp" />
+            android:layout_marginTop="32dp"
+            android:textColor="#FFA726" />
 
         <!-- Campo de E-mail -->
         <EditText
@@ -46,6 +50,8 @@
             android:layout_height="wrap_content"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
+            android:backgroundTint="#8BC34A"
+            android:padding="10dp"
             android:layout_marginTop="8dp" />
 
         <!-- Campo de Senha -->
@@ -55,6 +61,8 @@
             android:layout_height="wrap_content"
             android:hint="Senha"
             android:inputType="textPassword"
+            android:backgroundTint="#8BC34A"
+            android:padding="10dp"
             android:layout_marginTop="8dp" />
 
         <!-- Botão "Entrar" -->
@@ -63,7 +71,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Entrar"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#FFA726"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 </ScrollView>

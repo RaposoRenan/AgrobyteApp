@@ -3,14 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAF3E0">
 
     <!-- Campo para o nome do produto -->
     <EditText
         android:id="@+id/etNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome do Produto" />
+        android:hint="Nome do Produto"
+        android:backgroundTint="#A52A2A"
+        android:padding="10dp"/>
 
     <!-- Campo para o valor unitário -->
     <EditText
@@ -18,7 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Valor Unitário"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:backgroundTint="#A52A2A"
+        android:padding="10dp"/>
 
     <!-- Campo para a quantidade em estoque -->
     <EditText
@@ -26,7 +31,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Quantidade em Estoque"
-        android:inputType="number" />
+        android:inputType="number"
+        android:backgroundTint="#A52A2A"
+        android:padding="10dp"/>
 
     <!-- Campo para a data de validade -->
     <EditText
@@ -34,7 +41,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Data de Validade (AAAA-MM-DD)"
-        android:inputType="date" />
+        android:inputType="date"
+        android:backgroundTint="#A52A2A"
+        android:padding="10dp"/>
 
     <!-- Botão para salvar o produto -->
     <Button
@@ -42,6 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Salvar Produto"
-        android:layout_marginTop="16dp" />
-
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFA726"
+        android:textColor="#FFFFFF"/>
 </LinearLayout>

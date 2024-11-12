@@ -3,38 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAF3E0">
 
     <!-- Detalhes do insumo -->
     <TextView
         android:id="@+id/tvId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID:" />
+        android:text="ID:"
+        android:textColor="#8BC34A" />
 
     <TextView
         android:id="@+id/tvNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome:" />
+        android:text="Nome:"
+        android:textColor="#8BC34A" />
 
     <TextView
         android:id="@+id/tvQuantidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantidade:" />
+        android:text="Quantidade:"
+        android:textColor="#8BC34A" />
 
     <TextView
         android:id="@+id/tvValorUnitario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Valor Unitário:" />
+        android:text="Valor Unitário:"
+        android:textColor="#8BC34A" />
 
     <TextView
         android:id="@+id/tvDataValidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Data de Validade:" />
+        android:text="Data de Validade:"
+        android:textColor="#8BC34A" />
 
     <!-- Botões de ação -->
     <Button
@@ -42,7 +48,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Editar"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFA726"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/btnExcluir"
@@ -50,7 +58,7 @@
         android:layout_height="wrap_content"
         android:text="Excluir"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#FF0000"
+        android:backgroundTint="#FF6347"
         android:layout_marginTop="8dp" />
 
     <Button
@@ -58,5 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Voltar"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#A52A2A"
+        android:textColor="#FFFFFF" />
 </LinearLayout>

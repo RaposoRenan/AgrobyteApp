@@ -3,19 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAF3E0">
 
     <!-- Seleção do Insumo -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Selecione o Insumo"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="#4CAF50" />
 
     <Spinner
         android:id="@+id/spnInsumos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#8BC34A"
         android:layout_marginTop="8dp" />
 
     <!-- Quantidade do Insumo -->
@@ -24,7 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Quantidade"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="#4CAF50" />
 
     <EditText
         android:id="@+id/etQuantidadeInsumo"
@@ -32,6 +36,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:hint="Digite a quantidade do insumo"
+        android:backgroundTint="#8BC34A"
+        android:padding="10dp"
         android:layout_marginTop="8dp" />
-
 </LinearLayout>

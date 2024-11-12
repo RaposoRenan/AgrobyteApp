@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAF3E0">
 
     <!-- Campo de pesquisa para o nome do produto na produção -->
     <EditText
@@ -12,6 +13,8 @@
         android:layout_height="wrap_content"
         android:hint="Pesquisar por Nome do Produto"
         android:inputType="text"
+        android:backgroundTint="#8BC34A"
+        android:padding="10dp"
         android:layout_marginBottom="8dp" />
 
     <!-- Botões para pesquisa, iniciar e atualizar status -->
@@ -21,21 +24,27 @@
         android:layout_height="wrap_content"
         android:text="Pesquisar"
         android:layout_gravity="end"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#FFA726"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/btnIniciarProducao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Iniciar Produção"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFA726"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/btnAtualizarStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Atualizar Status"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFA726"
+        android:textColor="#FFFFFF" />
 
     <!-- RecyclerView para exibir a lista de produções -->
     <androidx.recyclerview.widget.RecyclerView

@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAF3E0">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,42 +14,58 @@
             android:id="@+id/tvId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID: " />
+            android:text="ID:"
+            android:textSize="16sp"
+            android:textColor="#8BC34A"/>
 
         <TextView
             android:id="@+id/tvProdutoNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Produto: " />
+            android:text="Produto:"
+            android:textSize="16sp"
+            android:textColor="#8BC34A"/>
 
         <TextView
             android:id="@+id/tvQntdColhida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quantidade Colhida: " />
+            android:text="Quantidade Colhida:"
+            android:textSize="16sp"
+            android:textColor="#8BC34A"/>
 
         <TextView
             android:id="@+id/tvPerdaDoenca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Perda por Doença: " />
+            android:text="Perda por Doença:"
+            android:textSize="16sp"
+            android:textColor="#8BC34A"/>
 
         <TextView
             android:id="@+id/tvPerdaErro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Perda por Erro: " />
+            android:text="Perda por Erro:"
+            android:textSize="16sp"
+            android:textColor="#8BC34A"/>
 
         <TextView
             android:id="@+id/tvDataColheita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Data Colheita: " />
+            android:text="Data Colheita:"
+            android:textSize="16sp"
+            android:textColor="#8BC34A"/>
 
+        <!-- Botão Voltar -->
         <Button
             android:id="@+id/btnVoltar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Voltar" />
+            android:text="Voltar"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#A52A2A"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 </ScrollView>

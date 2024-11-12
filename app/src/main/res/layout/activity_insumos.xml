@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAF3E0">
 
     <!-- Campo de pesquisa por Nome -->
     <EditText
@@ -12,7 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Pesquisar por Nome"
-        android:inputType="text" />
+        android:inputType="text"
+        android:backgroundTint="#8BC34A"
+        android:padding="10dp" />
 
     <!-- Botão de pesquisa -->
     <Button
@@ -21,7 +24,9 @@
         android:layout_height="wrap_content"
         android:text="Pesquisar"
         android:layout_gravity="end"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFA726"
+        android:textColor="#FFFFFF" />
 
     <!-- Botão de adicionar -->
     <Button
@@ -29,7 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Adicionar"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFA726"
+        android:textColor="#FFFFFF" />
 
     <!-- RecyclerView para exibir os insumos -->
     <androidx.recyclerview.widget.RecyclerView
@@ -44,6 +51,8 @@
         android:id="@+id/btnVoltar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Voltar para o Menu" />
-
+        android:text="Voltar para o Menu"
+        android:backgroundTint="#A52A2A"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="8dp" />
 </LinearLayout>
