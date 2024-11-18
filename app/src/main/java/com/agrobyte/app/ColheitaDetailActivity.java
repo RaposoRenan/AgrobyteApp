@@ -2,6 +2,7 @@ package com.agrobyte.app;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import retrofit2.Response;
 public class ColheitaDetailActivity extends AppCompatActivity {
 
     private TextView tvId, tvDataColheita, tvQntdColhida, tvPerdaDoenca, tvPerdaErro, tvProdutoNome;
+    private Button btnVoltar;
     private ApiService apiService;
     private int colheitaId;
 
@@ -29,6 +31,7 @@ public class ColheitaDetailActivity extends AppCompatActivity {
         tvPerdaDoenca = findViewById(R.id.tvPerdaDoenca);
         tvPerdaErro = findViewById(R.id.tvPerdaErro);
         tvProdutoNome = findViewById(R.id.tvProdutoNome);
+        btnVoltar = findViewById(R.id.btnVoltar);
 
         apiService = ApiClient.getApiServiceWithAuth(this);
         colheitaId = getIntent().getIntExtra("colheita_id", -1);
@@ -38,6 +41,8 @@ public class ColheitaDetailActivity extends AppCompatActivity {
         } else {
             finish();
         }
+
+        btnVoltar.setOnClickListener(v -> finish());
     }
 
     private void fetchColheitaDetails() {
